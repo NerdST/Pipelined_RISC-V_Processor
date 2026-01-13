@@ -1,0 +1,277 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "WriteDataM[0]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[1]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[2]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[3]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[4]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[5]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[6]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[7]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[8]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[9]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[10]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[11]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[12]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[13]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[14]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[15]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[16]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[17]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[18]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[19]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[20]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[21]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[22]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[23]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[24]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[25]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[26]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[27]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[28]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[29]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[30]",
+					"strict" : false
+				},
+				{
+					"name" : "WriteDataM[31]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[0]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[1]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[2]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[3]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[4]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[5]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[6]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[7]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[8]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[9]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[10]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[11]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[12]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[13]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[14]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[15]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[16]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[17]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[18]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[19]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[20]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[21]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[22]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[23]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[24]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[25]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[26]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[27]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[28]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[29]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[30]",
+					"strict" : false
+				},
+				{
+					"name" : "DataAdrM[31]",
+					"strict" : false
+				},
+				{
+					"name" : "MemWriteM",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
+					"strict" : false
+				},
+				{
+					"name" : "reset",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

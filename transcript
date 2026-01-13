@@ -1,0 +1,452 @@
+# Loading project lab9_st
+vsim work.testbench
+# vsim work.testbench 
+# Start time: 21:59:39 on Dec 11,2025
+# Loading sv_std.std
+# Loading work.testbench
+# Loading work.top
+# Loading work.riscv
+# Loading work.controller
+# Loading work.datapath
+# Loading work.mux2
+# Loading work.flopenr
+# Loading work.adder
+# Loading work.flopenrc
+# Loading work.regfile
+# Loading work.extend
+# Loading work.floprc
+# Loading work.mux3
+# Loading work.alu
+# Loading work.flopr
+# Loading work.hazard
+# Loading work.imem
+# Loading work.dmem
+add wave -position insertpoint sim:/testbench/*
+add wave -position insertpoint  \
+sim:/testbench/clk
+add wave -position insertpoint  \
+sim:/testbench/reset
+add wave -position insertpoint  \
+sim:/testbench/dut/PCF
+add wave -position insertpoint  \
+sim:/testbench/dut/InstrF
+add wave -position insertpoint  \
+sim:/testbench/dut/MemWriteM
+add wave -position insertpoint  \
+sim:/testbench/dut/DataAdrM
+add wave -position insertpoint  \
+sim:/testbench/dut/WriteDataM
+add wave -position insertpoint  \
+sim:/testbench/dut/ReadDataM
+run 200
+run 200
+run 200
+run 200
+run 200
+run 200
+run 200
+run 200
+run 200
+run 200
+
+run 200
+
+run 200
+run 200
+run 200
+restart -f
+# Compile of riscvpipeline.sv was successful.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.testbench
+# Loading work.top
+# Loading work.riscv
+# Loading work.controller
+# Loading work.datapath
+# Loading work.mux2
+# Loading work.flopenr
+# Loading work.adder
+# Loading work.flopenrc
+# Loading work.regfile
+# Loading work.extend
+# Loading work.floprc
+# Loading work.mux3
+# Loading work.alu
+# Loading work.flopr
+# Loading work.hazard
+# Loading work.imem
+# Loading work.dmem
+run
+run
+run
+run
+add wave -position insertpoint sim:/testbench/dut/riscv/dp/rf/*
+add wave -position insertpoint  \
+sim:/testbench/dut/riscv/dp/rf/a1 \
+sim:/testbench/dut/riscv/dp/rf/a2 \
+sim:/testbench/dut/riscv/dp/rf/a3
+add wave -position insertpoint  \
+sim:/testbench/dut/riscv/dp/rf/wd3
+add wave -position insertpoint  \
+sim:/testbench/dut/riscv/dp/rf/rd1
+add wave -position insertpoint  \
+sim:/testbench/dut/riscv/dp/rf/rd2
+add wave -position insertpoint  \
+sim:/testbench/dut/riscv/dp/alu/a
+add wave -position insertpoint  \
+sim:/testbench/dut/riscv/dp/alu/b
+add wave -position insertpoint  \
+sim:/testbench/dut/riscv/dp/alu/result
+add wave -position insertpoint  \
+sim:/testbench/dut/dmem/a \
+sim:/testbench/dut/dmem/wd
+add wave -position insertpoint  \
+sim:/testbench/dut/dmem/rd
+add wave -position insertpoint  \
+sim:/testbench/dut/dmem/we
+restart -f
+run
+run
+restart -f
+run 300
+restart -f
+run
+run
+restart -f
+# Compile of riscvpipeline.sv was successful.
+run
+run
+run
+add wave -position insertpoint  \
+sim:/testbench/dut/riscv/dp/ImmExtD
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.testbench
+# Loading work.top
+# Loading work.riscv
+# Loading work.controller
+# Loading work.datapath
+# Loading work.mux2
+# Loading work.flopenr
+# Loading work.adder
+# Loading work.flopenrc
+# Loading work.regfile
+# Loading work.extend
+# Loading work.floprc
+# Loading work.mux3
+# Loading work.alu
+# Loading work.flopr
+# Loading work.hazard
+# Loading work.imem
+# Loading work.dmem
+run
+run
+add wave -position insertpoint  \
+sim:/testbench/dut/riscv/dp/ALUControlE
+restart -f
+run 200
+add wave -position insertpoint  \
+sim:/testbench/dut/riscv/dp/ALUControlD
+restart -f
+run 200
+add wave -position insertpoint  \
+sim:/testbench/dut/riscv/c/op
+add wave -position insertpoint  \
+sim:/testbench/dut/riscv/c/funct3
+add wave -position insertpoint  \
+sim:/testbench/dut/riscv/c/funct7b5
+restart -f
+run 200
+# Compile of riscvpipeline.sv was successful.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.testbench
+# Loading work.top
+# Loading work.riscv
+# Loading work.controller
+# Loading work.datapath
+# Loading work.mux2
+# Loading work.flopenr
+# Loading work.adder
+# Loading work.flopenrc
+# Loading work.regfile
+# Loading work.extend
+# Loading work.floprc
+# Loading work.mux3
+# Loading work.alu
+# Loading work.flopr
+# Loading work.hazard
+# Loading work.imem
+# Loading work.dmem
+run 200
+add wave -position insertpoint  \
+sim:/testbench/dut/riscv/c/RtypeSub
+restart -f
+run 200
+add wave -position insertpoint  \
+sim:/testbench/dut/riscv/c/ALUOp_internal
+restart -f
+run 200
+# Compile of riscvpipeline.sv failed with 4 errors.
+# Compile of riscvpipeline.sv was successful.
+# Load canceled
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.testbench
+# Loading work.top
+# Loading work.riscv
+# Loading work.datapath
+# Loading work.mux2
+# Loading work.flopenr
+# Loading work.adder
+# Loading work.flopenrc
+# Loading work.controller
+# Loading work.regfile
+# Loading work.extend
+# Loading work.floprc
+# Loading work.mux3
+# Loading work.alu
+# Loading work.flopr
+# Loading work.hazard
+# Loading work.imem
+# Loading work.dmem
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'ctrl'.  Expected 13, found 11.
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/ctrl File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 412
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (2) for port 'MemWrite'. The port definition is at: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(173).
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/ctrl File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 412
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (1) for port 'ResultSrc'. The port definition is at: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(174).
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/ctrl File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 412
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (3) for port 'ALUOp'. The port definition is at: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(176).
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/ctrl File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 412
+# ** Warning: (vsim-3722) /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(412): [TFMPC] - Missing connection for port 'Jump'.
+# ** Warning: (vsim-3722) /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(412): [TFMPC] - Missing connection for port 'ALUControl'.
+# Warning in wave window restart: (vish-4014) No objects found matching '/testbench/dut/riscv/c/op'. 
+# Warning in wave window restart: (vish-4014) No objects found matching '/testbench/dut/riscv/c/funct3'. 
+# Warning in wave window restart: (vish-4014) No objects found matching '/testbench/dut/riscv/c/funct7b5'. 
+# Warning in wave window restart: (vish-4014) No objects found matching '/testbench/dut/riscv/c/RtypeSub'. 
+# Warning in wave window restart: (vish-4014) No objects found matching '/testbench/dut/riscv/c/ALUOp_internal'. 
+add wave -position insertpoint  \
+sim:/testbench/dut/riscv/dp/ctrl/op
+add wave -position insertpoint  \
+sim:/testbench/dut/riscv/dp/ctrl/ALUOp_internal \
+sim:/testbench/dut/riscv/dp/ctrl/funct3 \
+sim:/testbench/dut/riscv/dp/ctrl/funct7b5 \
+sim:/testbench/dut/riscv/dp/ctrl/RtypeSub
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'ctrl'.  Expected 13, found 11.
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/ctrl File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 412
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (2) for port 'MemWrite'. The port definition is at: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(173).
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/ctrl File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 412
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (1) for port 'ResultSrc'. The port definition is at: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(174).
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/ctrl File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 412
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (3) for port 'ALUOp'. The port definition is at: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(176).
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/ctrl File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 412
+# ** Warning: (vsim-3722) /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(412): [TFMPC] - Missing connection for port 'Jump'.
+# ** Warning: (vsim-3722) /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(412): [TFMPC] - Missing connection for port 'ALUControl'.
+run 200
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'ctrl'.  Expected 13, found 11.
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/ctrl File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 412
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (2) for port 'MemWrite'. The port definition is at: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(173).
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/ctrl File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 412
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (1) for port 'ResultSrc'. The port definition is at: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(174).
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/ctrl File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 412
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (3) for port 'ALUOp'. The port definition is at: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(176).
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/ctrl File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 412
+# ** Warning: (vsim-3722) /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(412): [TFMPC] - Missing connection for port 'Jump'.
+# ** Warning: (vsim-3722) /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(412): [TFMPC] - Missing connection for port 'ALUControl'.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'ctrl'.  Expected 13, found 11.
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/ctrl File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 412
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (2) for port 'MemWrite'. The port definition is at: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(173).
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/ctrl File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 412
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (1) for port 'ResultSrc'. The port definition is at: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(174).
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/ctrl File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 412
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (3) for port 'ALUOp'. The port definition is at: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(176).
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/ctrl File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 412
+# ** Warning: (vsim-3722) /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(412): [TFMPC] - Missing connection for port 'Jump'.
+# ** Warning: (vsim-3722) /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(412): [TFMPC] - Missing connection for port 'ALUControl'.
+# A time value could not be extracted from the current line
+# Compile of riscvpipeline.sv failed with 14 errors.
+# Compile of riscvpipeline.sv was successful.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.testbench
+# Loading work.top
+# Loading work.riscv
+# Loading work.datapath
+# Loading work.mux2
+# Loading work.flopenr
+# Loading work.adder
+# Loading work.flopenrc
+# Loading work.controller
+# Loading work.regfile
+# Loading work.extend
+# Loading work.floprc
+# Loading work.mux3
+# Loading work.alu
+# Loading work.flopr
+# Loading work.hazard
+# Loading work.imem
+# Loading work.dmem
+restart -f
+run
+run 100
+run 100
+restart -f
+run 200
+restart -f
+add wave -position insertpoint  \
+sim:/testbench/dut/riscv/dp/rf/a1 \
+sim:/testbench/dut/riscv/dp/rf/a2 \
+sim:/testbench/dut/riscv/dp/rf/a3
+add wave -position insertpoint  \
+sim:/testbench/dut/riscv/dp/rf/rd1 \
+sim:/testbench/dut/riscv/dp/rf/rd2
+add wave -position insertpoint  \
+sim:/testbench/dut/riscv/dp/rf/wd3
+add wave -position insertpoint  \
+sim:/testbench/dut/imem/a \
+sim:/testbench/dut/imem/RAM \
+sim:/testbench/dut/imem/rd
+add wave -position insertpoint  \
+sim:/testbench/dut/riscv/dp/alu/a \
+sim:/testbench/dut/riscv/dp/alu/b \
+sim:/testbench/dut/riscv/dp/alu/result
+add wave -position insertpoint  \
+sim:/testbench/dut/dmem/a \
+sim:/testbench/dut/dmem/rd \
+sim:/testbench/dut/dmem/wd
+run 200
+add wave -position insertpoint  \
+sim:/testbench/dut/dmem/we
+run 100
+# Compile of riscvpipeline.sv was successful.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.testbench
+# Loading work.top
+# Loading work.riscv
+# Loading work.datapath
+# Loading work.mux2
+# Loading work.flopenr
+# Loading work.adder
+# Loading work.flopenrc
+# Loading work.controller
+# Loading work.regfile
+# Loading work.extend
+# Loading work.floprc
+# Loading work.mux3
+# Loading work.alu
+# Loading work.flopr
+# ** Error: (vsim-3033) Instantiation of 'mux4' failed. The design unit was not found.
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 495
+#         Searched libraries:
+#             /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/work
+# Loading work.hazard
+# Loading work.imem
+# Loading work.dmem
+# Compile of riscvpipeline.sv was successful.
+restart -f
+# No Design Loaded!
+vsim work.testbench
+# vsim work.testbench 
+# Start time: 21:59:39 on Dec 11,2025
+# Loading sv_std.std
+# Loading work.testbench
+# Loading work.top
+# Loading work.riscv
+# Loading work.datapath
+# Loading work.mux2
+# Loading work.flopenr
+# Loading work.adder
+# Loading work.flopenrc
+# Loading work.controller
+# Loading work.regfile
+# Loading work.extend
+# Loading work.floprc
+# Loading work.mux3
+# Loading work.alu
+# Loading work.flopr
+# Loading work.mux4
+# Loading work.hazard
+# Loading work.imem
+# Loading work.dmem
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (3) for port 'ResultSrc'. The port definition is at: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(170).
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/ctrl File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 417
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (3) for port 'ImmSrc'. The port definition is at: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(176).
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/ctrl File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 417
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (3) for port 'immsrc'. The port definition is at: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(531).
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/ext File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 425
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (3) for port 's'. The port definition is at: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(640).
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/forwardaemux File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 453
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (3) for port 's'. The port definition is at: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(640).
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/forwardbemux File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 454
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (3) for port 's'. The port definition is at: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(648).
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/resultmux File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 495
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (3) for port 'ResultSrcE'. The port definition is at: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(551).
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/hu File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 498
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (3) for port 'ForwardAE'. The port definition is at: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(553).
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/hu File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 498
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (3) for port 'ForwardBE'. The port definition is at: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(553).
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut/riscv/dp/hu File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 498
+# Compile of riscvpipeline.sv was successful.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.testbench
+# Loading work.top
+# Loading work.riscv
+# Loading work.datapath
+# Loading work.mux2
+# Loading work.flopenr
+# Loading work.adder
+# Loading work.flopenrc
+# Loading work.controller
+# Loading work.regfile
+# Loading work.extend
+# Loading work.floprc
+# Loading work.mux3
+# Loading work.alu
+# Loading work.flopr
+# Loading work.mux4
+# Loading work.hazard
+# Loading work.imem
+# Loading work.dmem
+run 200
+run 200
+run 200
+restart -f
+run 400
+restart -f
+run
+run
+run 200
+# Simulation reached end
+# ** Note: $stop    : /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(118)
+#    Time: 355 ps  Iteration: 1  Instance: /testbench
+# Break in Module testbench at /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv line 118
+add wave -position insertpoint  \
+sim:/testbench/dut/DataAdrM \
+sim:/testbench/dut/MemWriteM \
+sim:/testbench/dut/ReadDataM \
+sim:/testbench/dut/WriteDataM
+restart -f
+run -all
+# Simulation reached end
+# ** Note: $stop    : /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(118)
+#    Time: 355 ps  Iteration: 1  Instance: /testbench
+# Break in Module testbench at /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv line 118
+add wave -position insertpoint  \
+sim:/testbench/dut/riscv/dp/InstrD \
+sim:/testbench/dut/riscv/dp/InstrF
+restart -f
+run -all
+# Simulation reached end
+# ** Note: $stop    : /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv(118)
+#    Time: 355 ps  Iteration: 1  Instance: /testbench
+# Break in Module testbench at /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv line 118
+# End time: 16:42:46 on Dec 12,2025, Elapsed time: 18:43:07
+# Errors: 0, Warnings: 1

@@ -1,0 +1,1509 @@
+Analysis & Synthesis report for riscvpipeline
+Fri Dec 12 16:17:08 2025
+Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. Registers Removed During Synthesis
+ 10. Removed Registers Triggering Further Register Optimizations
+ 11. General Register Statistics
+ 12. Registers Packed Into Inferred Megafunctions
+ 13. Registers Added for RAM Pass-Through Logic
+ 14. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 15. Source assignments for dmem:dmem|altsyncram:RAM_rtl_0|altsyncram_a3n1:auto_generated
+ 16. Source assignments for riscv:riscv|datapath:dp|regfile:rf|altsyncram:rf_rtl_0|altsyncram_6ji1:auto_generated
+ 17. Source assignments for riscv:riscv|datapath:dp|regfile:rf|altsyncram:rf_rtl_1|altsyncram_6ji1:auto_generated
+ 18. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|mux2:pcmux
+ 19. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopenr:pcreg
+ 20. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopenrc:instrdreg
+ 21. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopenrc:pcdreg
+ 22. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopenrc:pcplus4dreg
+ 23. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:rd1ereg
+ 24. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:rd2ereg
+ 25. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:pcereg
+ 26. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:immextereg
+ 27. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:pcplus4ereg
+ 28. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:rs1ereg
+ 29. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:rs2ereg
+ 30. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:rdereg
+ 31. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:regwriteereg
+ 32. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:resultsrcereg
+ 33. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:memwriteereg
+ 34. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:alucontrolereg
+ 35. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:alusrcerreg
+ 36. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:jumpereg
+ 37. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:branchereg
+ 38. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:sl12ereg
+ 39. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|mux3:forwardaemux
+ 40. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|mux3:forwardbemux
+ 41. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|mux2:srcbmux
+ 42. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:aluresultmreg
+ 43. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:writedatamreg
+ 44. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:pcplus4mreg
+ 45. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:rdmreg
+ 46. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:regwritemreg
+ 47. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:memwritemreg
+ 48. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:resultsrcmreg
+ 49. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:sl12mreg
+ 50. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:aluresultwreg
+ 51. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:readdatawreg
+ 52. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:pcplus4wreg
+ 53. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:rdwreg
+ 54. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:regwritewreg
+ 55. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:resultsrcwreg
+ 56. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:sl12wreg
+ 57. Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|mux4:resultmux
+ 58. Parameter Settings for Inferred Entity Instance: dmem:dmem|altsyncram:RAM_rtl_0
+ 59. Parameter Settings for Inferred Entity Instance: riscv:riscv|datapath:dp|regfile:rf|altsyncram:rf_rtl_0
+ 60. Parameter Settings for Inferred Entity Instance: riscv:riscv|datapath:dp|regfile:rf|altsyncram:rf_rtl_1
+ 61. altsyncram Parameter Settings by Entity Instance
+ 62. Port Connectivity Checks: "riscv:riscv|datapath:dp|floprc:sl12ereg"
+ 63. Port Connectivity Checks: "riscv:riscv|datapath:dp|adder:pcadd4"
+ 64. Post-Synthesis Netlist Statistics for Top Partition
+ 65. Elapsed Time Per Partition
+ 66. Analysis & Synthesis Messages
+ 67. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2020  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++---------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Fri Dec 12 16:17:08 2025       ;
+; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
+; Revision Name                   ; riscvpipeline                               ;
+; Top-level Entity Name           ; top                                         ;
+; Family                          ; Cyclone V                                   ;
+; Logic utilization (in ALMs)     ; N/A                                         ;
+; Total registers                 ; 636                                         ;
+; Total pins                      ; 67                                          ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 3,584                                       ;
+; Total DSP Blocks                ; 0                                           ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0                                           ;
+; Total DLLs                      ; 0                                           ;
++---------------------------------+---------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CEBA4F23C7        ;                    ;
+; Top-level entity name                                                           ; top                ; riscvpipeline      ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 4           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processor 3            ;   0.0%      ;
+;     Processor 4            ;   0.0%      ;
++----------------------------+-------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                 ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                             ; Library ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------------+---------+
+; riscvpipeline.sv                 ; yes             ; User SystemVerilog HDL File  ; /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv        ;         ;
+; riscvtest.txt                    ; yes             ; Auto-Found File              ; /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvtest.txt           ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                 ; /home/sangeeth/intelFPGA_lite/20.1/quartus/libraries/megafunctions/altsyncram.tdf        ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                 ; /home/sangeeth/intelFPGA_lite/20.1/quartus/libraries/megafunctions/stratix_ram_block.inc ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                 ; /home/sangeeth/intelFPGA_lite/20.1/quartus/libraries/megafunctions/lpm_mux.inc           ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                 ; /home/sangeeth/intelFPGA_lite/20.1/quartus/libraries/megafunctions/lpm_decode.inc        ;         ;
+; aglobal201.inc                   ; yes             ; Megafunction                 ; /home/sangeeth/intelFPGA_lite/20.1/quartus/libraries/megafunctions/aglobal201.inc        ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                 ; /home/sangeeth/intelFPGA_lite/20.1/quartus/libraries/megafunctions/a_rdenreg.inc         ;         ;
+; altrom.inc                       ; yes             ; Megafunction                 ; /home/sangeeth/intelFPGA_lite/20.1/quartus/libraries/megafunctions/altrom.inc            ;         ;
+; altram.inc                       ; yes             ; Megafunction                 ; /home/sangeeth/intelFPGA_lite/20.1/quartus/libraries/megafunctions/altram.inc            ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                 ; /home/sangeeth/intelFPGA_lite/20.1/quartus/libraries/megafunctions/altdpram.inc          ;         ;
+; db/altsyncram_a3n1.tdf           ; yes             ; Auto-Generated Megafunction  ; /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/db/altsyncram_a3n1.tdf  ;         ;
+; db/altsyncram_6ji1.tdf           ; yes             ; Auto-Generated Megafunction  ; /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/db/altsyncram_6ji1.tdf  ;         ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimate of Logic utilization (ALMs needed) ; 558       ;
+;                                             ;           ;
+; Combinational ALUT usage for logic          ; 758       ;
+;     -- 7 input functions                    ; 23        ;
+;     -- 6 input functions                    ; 294       ;
+;     -- 5 input functions                    ; 223       ;
+;     -- 4 input functions                    ; 92        ;
+;     -- <=3 input functions                  ; 126       ;
+;                                             ;           ;
+; Dedicated logic registers                   ; 636       ;
+;                                             ;           ;
+; I/O pins                                    ; 67        ;
+; Total MLAB memory bits                      ; 0         ;
+; Total block memory bits                     ; 3584      ;
+;                                             ;           ;
+; Total DSP Blocks                            ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 732       ;
+; Total fan-out                               ; 7167      ;
+; Average fan-out                             ; 4.41      ;
++---------------------------------------------+-----------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                    ;
++-------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------+-----------------+--------------+
+; Compilation Hierarchy Node                      ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                        ; Entity Name     ; Library Name ;
++-------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------+-----------------+--------------+
+; |top                                            ; 758 (1)             ; 636 (0)                   ; 3584              ; 0          ; 67   ; 0            ; |top                                                                                       ; top             ; work         ;
+;    |dmem:dmem|                                  ; 0 (0)               ; 1 (1)                     ; 2048              ; 0          ; 0    ; 0            ; |top|dmem:dmem                                                                             ; dmem            ; work         ;
+;       |altsyncram:RAM_rtl_0|                    ; 0 (0)               ; 0 (0)                     ; 2048              ; 0          ; 0    ; 0            ; |top|dmem:dmem|altsyncram:RAM_rtl_0                                                        ; altsyncram      ; work         ;
+;          |altsyncram_a3n1:auto_generated|       ; 0 (0)               ; 0 (0)                     ; 2048              ; 0          ; 0    ; 0            ; |top|dmem:dmem|altsyncram:RAM_rtl_0|altsyncram_a3n1:auto_generated                         ; altsyncram_a3n1 ; work         ;
+;    |imem:imem|                                  ; 18 (18)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|imem:imem                                                                             ; imem            ; work         ;
+;    |riscv:riscv|                                ; 739 (0)             ; 635 (0)                   ; 1536              ; 0          ; 0    ; 0            ; |top|riscv:riscv                                                                           ; riscv           ; work         ;
+;       |datapath:dp|                             ; 739 (21)            ; 635 (0)                   ; 1536              ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp                                                               ; datapath        ; work         ;
+;          |adder:pcadd4|                         ; 30 (30)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|adder:pcadd4                                                  ; adder           ; work         ;
+;          |adder:pcaddbranch|                    ; 32 (32)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|adder:pcaddbranch                                             ; adder           ; work         ;
+;          |alu:alu|                              ; 326 (326)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|alu:alu                                                       ; alu             ; work         ;
+;          |controller:ctrl|                      ; 10 (10)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|controller:ctrl                                               ; controller      ; work         ;
+;          |extend:ext|                           ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|extend:ext                                                    ; extend          ; work         ;
+;          |flopenr:pcreg|                        ; 2 (2)               ; 32 (32)                   ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|flopenr:pcreg                                                 ; flopenr         ; work         ;
+;          |flopenrc:instrdreg|                   ; 24 (24)             ; 23 (23)                   ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|flopenrc:instrdreg                                            ; flopenrc        ; work         ;
+;          |flopenrc:pcdreg|                      ; 1 (1)               ; 30 (30)                   ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|flopenrc:pcdreg                                               ; flopenrc        ; work         ;
+;          |flopenrc:pcplus4dreg|                 ; 0 (0)               ; 32 (32)                   ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|flopenrc:pcplus4dreg                                          ; flopenrc        ; work         ;
+;          |flopr:aluresultmreg|                  ; 0 (0)               ; 32 (32)                   ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|flopr:aluresultmreg                                           ; flopr           ; work         ;
+;          |flopr:aluresultwreg|                  ; 0 (0)               ; 32 (32)                   ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|flopr:aluresultwreg                                           ; flopr           ; work         ;
+;          |flopr:memwritemreg|                   ; 0 (0)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|flopr:memwritemreg                                            ; flopr           ; work         ;
+;          |flopr:pcplus4mreg|                    ; 0 (0)               ; 32 (32)                   ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|flopr:pcplus4mreg                                             ; flopr           ; work         ;
+;          |flopr:pcplus4wreg|                    ; 0 (0)               ; 32 (32)                   ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|flopr:pcplus4wreg                                             ; flopr           ; work         ;
+;          |flopr:rdmreg|                         ; 0 (0)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|flopr:rdmreg                                                  ; flopr           ; work         ;
+;          |flopr:rdwreg|                         ; 0 (0)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|flopr:rdwreg                                                  ; flopr           ; work         ;
+;          |flopr:regwritemreg|                   ; 0 (0)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|flopr:regwritemreg                                            ; flopr           ; work         ;
+;          |flopr:regwritewreg|                   ; 0 (0)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|flopr:regwritewreg                                            ; flopr           ; work         ;
+;          |flopr:resultsrcmreg|                  ; 0 (0)               ; 2 (2)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|flopr:resultsrcmreg                                           ; flopr           ; work         ;
+;          |flopr:resultsrcwreg|                  ; 0 (0)               ; 2 (2)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|flopr:resultsrcwreg                                           ; flopr           ; work         ;
+;          |flopr:sl12mreg|                       ; 0 (0)               ; 14 (14)                   ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|flopr:sl12mreg                                                ; flopr           ; work         ;
+;          |flopr:sl12wreg|                       ; 0 (0)               ; 14 (14)                   ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|flopr:sl12wreg                                                ; flopr           ; work         ;
+;          |flopr:writedatamreg|                  ; 0 (0)               ; 32 (32)                   ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|flopr:writedatamreg                                           ; flopr           ; work         ;
+;          |floprc:alucontrolereg|                ; 2 (2)               ; 3 (3)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|floprc:alucontrolereg                                         ; floprc          ; work         ;
+;          |floprc:alusrcerreg|                   ; 0 (0)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|floprc:alusrcerreg                                            ; floprc          ; work         ;
+;          |floprc:branchereg|                    ; 0 (0)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|floprc:branchereg                                             ; floprc          ; work         ;
+;          |floprc:immextereg|                    ; 20 (20)             ; 15 (15)                   ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|floprc:immextereg                                             ; floprc          ; work         ;
+;          |floprc:memwriteereg|                  ; 0 (0)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|floprc:memwriteereg                                           ; floprc          ; work         ;
+;          |floprc:pcereg|                        ; 0 (0)               ; 32 (32)                   ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|floprc:pcereg                                                 ; floprc          ; work         ;
+;          |floprc:pcplus4ereg|                   ; 0 (0)               ; 30 (30)                   ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|floprc:pcplus4ereg                                            ; floprc          ; work         ;
+;          |floprc:rd1ereg|                       ; 34 (34)             ; 32 (32)                   ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|floprc:rd1ereg                                                ; floprc          ; work         ;
+;          |floprc:rd2ereg|                       ; 35 (35)             ; 32 (32)                   ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|floprc:rd2ereg                                                ; floprc          ; work         ;
+;          |floprc:rdereg|                        ; 0 (0)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|floprc:rdereg                                                 ; floprc          ; work         ;
+;          |floprc:regwriteereg|                  ; 0 (0)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|floprc:regwriteereg                                           ; floprc          ; work         ;
+;          |floprc:resultsrcereg|                 ; 0 (0)               ; 2 (2)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|floprc:resultsrcereg                                          ; floprc          ; work         ;
+;          |floprc:rs1ereg|                       ; 0 (0)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|floprc:rs1ereg                                                ; floprc          ; work         ;
+;          |floprc:rs2ereg|                       ; 1 (1)               ; 5 (5)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|floprc:rs2ereg                                                ; floprc          ; work         ;
+;          |floprc:sl12ereg|                      ; 0 (0)               ; 3 (3)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|floprc:sl12ereg                                               ; floprc          ; work         ;
+;          |hazard:hu|                            ; 20 (20)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|hazard:hu                                                     ; hazard          ; work         ;
+;          |mux2:srcbmux|                         ; 32 (32)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|mux2:srcbmux                                                  ; mux2            ; work         ;
+;          |mux3:forwardaemux|                    ; 45 (45)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|mux3:forwardaemux                                             ; mux3            ; work         ;
+;          |mux3:forwardbemux|                    ; 54 (54)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|mux3:forwardbemux                                             ; mux3            ; work         ;
+;          |mux4:resultmux|                       ; 43 (43)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|mux4:resultmux                                                ; mux4            ; work         ;
+;          |regfile:rf|                           ; 6 (6)               ; 149 (149)                 ; 1536              ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|regfile:rf                                                    ; regfile         ; work         ;
+;             |altsyncram:rf_rtl_0|               ; 0 (0)               ; 0 (0)                     ; 512               ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|regfile:rf|altsyncram:rf_rtl_0                                ; altsyncram      ; work         ;
+;                |altsyncram_6ji1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 512               ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|regfile:rf|altsyncram:rf_rtl_0|altsyncram_6ji1:auto_generated ; altsyncram_6ji1 ; work         ;
+;             |altsyncram:rf_rtl_1|               ; 0 (0)               ; 0 (0)                     ; 1024              ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|regfile:rf|altsyncram:rf_rtl_1                                ; altsyncram      ; work         ;
+;                |altsyncram_6ji1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 1024              ; 0          ; 0    ; 0            ; |top|riscv:riscv|datapath:dp|regfile:rf|altsyncram:rf_rtl_1|altsyncram_6ji1:auto_generated ; altsyncram_6ji1 ; work         ;
++-------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------+-----------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                     ;
++--------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+; Name                                                                                             ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF  ;
++--------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+; dmem:dmem|altsyncram:RAM_rtl_0|altsyncram_a3n1:auto_generated|ALTSYNCRAM                         ; AUTO ; Simple Dual Port ; 64           ; 32           ; 64           ; 32           ; 2048 ; None ;
+; riscv:riscv|datapath:dp|regfile:rf|altsyncram:rf_rtl_0|altsyncram_6ji1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 32           ; 32           ; 32           ; 32           ; 1024 ; None ;
+; riscv:riscv|datapath:dp|regfile:rf|altsyncram:rf_rtl_1|altsyncram_6ji1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 32           ; 32           ; 32           ; 32           ; 1024 ; None ;
++--------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                          ;
++-------------------------------------------------------------+---------------------------------------------------------------+
+; Register name                                               ; Reason for Removal                                            ;
++-------------------------------------------------------------+---------------------------------------------------------------+
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[0..11]            ; Stuck at GND due to stuck port data_in                        ;
+; riscv:riscv|datapath:dp|flopr:sl12mreg|q[0..11]             ; Stuck at GND due to stuck port data_in                        ;
+; riscv:riscv|datapath:dp|flopr:sl12wreg|q[0..11]             ; Stuck at GND due to stuck port data_in                        ;
+; riscv:riscv|datapath:dp|flopenrc:pcdreg|q[1]                ; Merged with riscv:riscv|datapath:dp|flopenrc:pcplus4dreg|q[1] ;
+; riscv:riscv|datapath:dp|flopenrc:pcdreg|q[0]                ; Merged with riscv:riscv|datapath:dp|flopenrc:pcplus4dreg|q[0] ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[24]               ; Merged with riscv:riscv|datapath:dp|floprc:rs2ereg|q[4]       ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[23]               ; Merged with riscv:riscv|datapath:dp|floprc:rs2ereg|q[3]       ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[22]               ; Merged with riscv:riscv|datapath:dp|floprc:rs2ereg|q[2]       ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[21]               ; Merged with riscv:riscv|datapath:dp|floprc:rs2ereg|q[1]       ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[20]               ; Merged with riscv:riscv|datapath:dp|floprc:rs2ereg|q[0]       ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[19]               ; Merged with riscv:riscv|datapath:dp|floprc:rs1ereg|q[4]       ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[18]               ; Merged with riscv:riscv|datapath:dp|floprc:rs1ereg|q[3]       ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[17]               ; Merged with riscv:riscv|datapath:dp|floprc:rs1ereg|q[2]       ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[16]               ; Merged with riscv:riscv|datapath:dp|floprc:rs1ereg|q[1]       ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[15]               ; Merged with riscv:riscv|datapath:dp|floprc:rs1ereg|q[0]       ;
+; riscv:riscv|datapath:dp|floprc:immextereg|q[21..31]         ; Merged with riscv:riscv|datapath:dp|floprc:immextereg|q[20]   ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[31]               ; Merged with riscv:riscv|datapath:dp|floprc:immextereg|q[20]   ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[25]               ; Merged with riscv:riscv|datapath:dp|floprc:immextereg|q[5]    ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[26]               ; Merged with riscv:riscv|datapath:dp|floprc:immextereg|q[6]    ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[27]               ; Merged with riscv:riscv|datapath:dp|floprc:immextereg|q[7]    ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[28]               ; Merged with riscv:riscv|datapath:dp|floprc:immextereg|q[8]    ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[29]               ; Merged with riscv:riscv|datapath:dp|floprc:immextereg|q[9]    ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[30]               ; Merged with riscv:riscv|datapath:dp|floprc:immextereg|q[10]   ;
+; riscv:riscv|datapath:dp|floprc:pcplus4ereg|q[0]             ; Merged with riscv:riscv|datapath:dp|floprc:pcereg|q[0]        ;
+; riscv:riscv|datapath:dp|floprc:pcplus4ereg|q[1]             ; Merged with riscv:riscv|datapath:dp|floprc:pcereg|q[1]        ;
+; riscv:riscv|datapath:dp|flopenrc:instrdreg|q[3,11,19,28,29] ; Merged with riscv:riscv|datapath:dp|flopenrc:instrdreg|q[31]  ;
+; riscv:riscv|datapath:dp|flopenrc:instrdreg|q[24]            ; Merged with riscv:riscv|datapath:dp|flopenrc:instrdreg|q[27]  ;
+; riscv:riscv|datapath:dp|flopenrc:instrdreg|q[25]            ; Merged with riscv:riscv|datapath:dp|flopenrc:instrdreg|q[26]  ;
+; riscv:riscv|datapath:dp|flopenrc:instrdreg|q[0]             ; Merged with riscv:riscv|datapath:dp|flopenrc:instrdreg|q[1]   ;
+; riscv:riscv|datapath:dp|flopenrc:instrdreg|q[31]            ; Stuck at GND due to stuck port data_in                        ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[10]      ; Stuck at GND due to stuck port data_in                        ;
+; riscv:riscv|datapath:dp|floprc:rdereg|q[4]                  ; Stuck at GND due to stuck port data_in                        ;
+; riscv:riscv|datapath:dp|floprc:rs1ereg|q[4]                 ; Stuck at GND due to stuck port data_in                        ;
+; riscv:riscv|datapath:dp|flopr:rdmreg|q[4]                   ; Stuck at GND due to stuck port data_in                        ;
+; riscv:riscv|datapath:dp|floprc:immextereg|q[8,9,19,20]      ; Stuck at GND due to stuck port data_in                        ;
+; riscv:riscv|datapath:dp|floprc:jumpereg|q[0]                ; Stuck at GND due to stuck port data_in                        ;
+; riscv:riscv|datapath:dp|flopr:sl12mreg|q[19,28,29,31]       ; Stuck at GND due to stuck port data_in                        ;
+; riscv:riscv|datapath:dp|flopr:sl12wreg|q[19,28,29,31]       ; Stuck at GND due to stuck port data_in                        ;
+; riscv:riscv|datapath:dp|flopr:rdwreg|q[4]                   ; Stuck at GND due to stuck port data_in                        ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[9]       ; Stuck at GND due to stuck port data_in                        ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[9]       ; Stuck at GND due to stuck port data_in                        ;
+; riscv:riscv|datapath:dp|floprc:immextereg|q[7]              ; Merged with riscv:riscv|datapath:dp|floprc:rs2ereg|q[4]       ;
+; riscv:riscv|datapath:dp|floprc:immextereg|q[5]              ; Merged with riscv:riscv|datapath:dp|floprc:immextereg|q[6]    ;
+; riscv:riscv|datapath:dp|flopr:sl12mreg|q[27]                ; Merged with riscv:riscv|datapath:dp|flopr:sl12mreg|q[24]      ;
+; riscv:riscv|datapath:dp|flopr:sl12mreg|q[26]                ; Merged with riscv:riscv|datapath:dp|flopr:sl12mreg|q[25]      ;
+; riscv:riscv|datapath:dp|flopr:sl12wreg|q[27]                ; Merged with riscv:riscv|datapath:dp|flopr:sl12wreg|q[24]      ;
+; riscv:riscv|datapath:dp|flopr:sl12wreg|q[26]                ; Merged with riscv:riscv|datapath:dp|flopr:sl12wreg|q[25]      ;
+; Total Number of Removed Registers = 103                     ;                                                               ;
++-------------------------------------------------------------+---------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                            ;
++--------------------------------------------------+---------------------------+---------------------------------------------------------+
+; Register name                                    ; Reason for Removal        ; Registers Removed due to This Register                  ;
++--------------------------------------------------+---------------------------+---------------------------------------------------------+
+; riscv:riscv|datapath:dp|flopenrc:instrdreg|q[31] ; Stuck at GND              ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[10], ;
+;                                                  ; due to stuck port data_in ; riscv:riscv|datapath:dp|floprc:rdereg|q[4],             ;
+;                                                  ;                           ; riscv:riscv|datapath:dp|floprc:rs1ereg|q[4],            ;
+;                                                  ;                           ; riscv:riscv|datapath:dp|flopr:rdmreg|q[4],              ;
+;                                                  ;                           ; riscv:riscv|datapath:dp|floprc:immextereg|q[20],        ;
+;                                                  ;                           ; riscv:riscv|datapath:dp|floprc:immextereg|q[19],        ;
+;                                                  ;                           ; riscv:riscv|datapath:dp|floprc:immextereg|q[9],         ;
+;                                                  ;                           ; riscv:riscv|datapath:dp|floprc:immextereg|q[8],         ;
+;                                                  ;                           ; riscv:riscv|datapath:dp|flopr:sl12mreg|q[19],           ;
+;                                                  ;                           ; riscv:riscv|datapath:dp|flopr:sl12mreg|q[28],           ;
+;                                                  ;                           ; riscv:riscv|datapath:dp|flopr:sl12mreg|q[29],           ;
+;                                                  ;                           ; riscv:riscv|datapath:dp|flopr:sl12mreg|q[31],           ;
+;                                                  ;                           ; riscv:riscv|datapath:dp|flopr:sl12wreg|q[19],           ;
+;                                                  ;                           ; riscv:riscv|datapath:dp|flopr:sl12wreg|q[28],           ;
+;                                                  ;                           ; riscv:riscv|datapath:dp|flopr:sl12wreg|q[29],           ;
+;                                                  ;                           ; riscv:riscv|datapath:dp|flopr:sl12wreg|q[31],           ;
+;                                                  ;                           ; riscv:riscv|datapath:dp|flopr:rdwreg|q[4],              ;
+;                                                  ;                           ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[9],  ;
+;                                                  ;                           ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[9]   ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[11]    ; Stuck at GND              ; riscv:riscv|datapath:dp|flopr:sl12mreg|q[11],           ;
+;                                                  ; due to stuck port data_in ; riscv:riscv|datapath:dp|flopr:sl12wreg|q[11]            ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[10]    ; Stuck at GND              ; riscv:riscv|datapath:dp|flopr:sl12mreg|q[10],           ;
+;                                                  ; due to stuck port data_in ; riscv:riscv|datapath:dp|flopr:sl12wreg|q[10]            ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[9]     ; Stuck at GND              ; riscv:riscv|datapath:dp|flopr:sl12mreg|q[9],            ;
+;                                                  ; due to stuck port data_in ; riscv:riscv|datapath:dp|flopr:sl12wreg|q[9]             ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[8]     ; Stuck at GND              ; riscv:riscv|datapath:dp|flopr:sl12mreg|q[8],            ;
+;                                                  ; due to stuck port data_in ; riscv:riscv|datapath:dp|flopr:sl12wreg|q[8]             ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[7]     ; Stuck at GND              ; riscv:riscv|datapath:dp|flopr:sl12mreg|q[7],            ;
+;                                                  ; due to stuck port data_in ; riscv:riscv|datapath:dp|flopr:sl12wreg|q[7]             ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[6]     ; Stuck at GND              ; riscv:riscv|datapath:dp|flopr:sl12mreg|q[6],            ;
+;                                                  ; due to stuck port data_in ; riscv:riscv|datapath:dp|flopr:sl12wreg|q[6]             ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[5]     ; Stuck at GND              ; riscv:riscv|datapath:dp|flopr:sl12mreg|q[5],            ;
+;                                                  ; due to stuck port data_in ; riscv:riscv|datapath:dp|flopr:sl12wreg|q[5]             ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[4]     ; Stuck at GND              ; riscv:riscv|datapath:dp|flopr:sl12mreg|q[4],            ;
+;                                                  ; due to stuck port data_in ; riscv:riscv|datapath:dp|flopr:sl12wreg|q[4]             ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[3]     ; Stuck at GND              ; riscv:riscv|datapath:dp|flopr:sl12mreg|q[3],            ;
+;                                                  ; due to stuck port data_in ; riscv:riscv|datapath:dp|flopr:sl12wreg|q[3]             ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[2]     ; Stuck at GND              ; riscv:riscv|datapath:dp|flopr:sl12mreg|q[2],            ;
+;                                                  ; due to stuck port data_in ; riscv:riscv|datapath:dp|flopr:sl12wreg|q[2]             ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[1]     ; Stuck at GND              ; riscv:riscv|datapath:dp|flopr:sl12mreg|q[1],            ;
+;                                                  ; due to stuck port data_in ; riscv:riscv|datapath:dp|flopr:sl12wreg|q[1]             ;
+; riscv:riscv|datapath:dp|floprc:sl12ereg|q[0]     ; Stuck at GND              ; riscv:riscv|datapath:dp|flopr:sl12mreg|q[0],            ;
+;                                                  ; due to stuck port data_in ; riscv:riscv|datapath:dp|flopr:sl12wreg|q[0]             ;
++--------------------------------------------------+---------------------------+---------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 636   ;
+; Number of registers using Synchronous Clear  ; 225   ;
+; Number of registers using Synchronous Load   ; 30    ;
+; Number of registers using Asynchronous Clear ; 498   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 172   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++----------------------------------------------------------------------------------+
+; Registers Packed Into Inferred Megafunctions                                     ;
++-----------------------------------------------------+---------------------+------+
+; Register Name                                       ; Megafunction        ; Type ;
++-----------------------------------------------------+---------------------+------+
+; riscv:riscv|datapath:dp|flopr:readdatawreg|q[0..31] ; dmem:dmem|RAM_rtl_0 ; RAM  ;
++-----------------------------------------------------+---------------------+------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Registers Added for RAM Pass-Through Logic                                                           ;
++--------------------------------------------------------+---------------------------------------------+
+; Register Name                                          ; RAM Name                                    ;
++--------------------------------------------------------+---------------------------------------------+
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[0]  ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[1]  ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[2]  ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[3]  ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[4]  ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[5]  ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[6]  ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[7]  ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[8]  ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[9]  ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[10] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[11] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[12] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[13] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[14] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[15] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[16] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[17] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[18] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[19] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[20] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[21] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[22] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[23] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[24] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[25] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[26] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[27] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[28] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[29] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[30] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[31] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[32] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[33] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[34] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[35] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[36] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[37] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[38] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[39] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[40] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[41] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0_bypass[42] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[0]  ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[1]  ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[2]  ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[3]  ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[4]  ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[5]  ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[6]  ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[7]  ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[8]  ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[9]  ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[10] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[11] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[12] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[13] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[14] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[15] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[16] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[17] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[18] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[19] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[20] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[21] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[22] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[23] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[24] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[25] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[26] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[27] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[28] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[29] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[30] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[31] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[32] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[33] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[34] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[35] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[36] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[37] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[38] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[39] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[40] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[41] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
+; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1_bypass[42] ; riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1 ;
++--------------------------------------------------------+---------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |top|riscv:riscv|datapath:dp|floprc:immextereg|q[1]  ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |top|riscv:riscv|datapath:dp|floprc:immextereg|q[16] ;
+; 3:1                ; 76 bits   ; 152 LEs       ; 0 LEs                ; 152 LEs                ; Yes        ; |top|riscv:riscv|datapath:dp|flopenrc:pcdreg|q[29]   ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|riscv:riscv|datapath:dp|floprc:rd1ereg|q[22]    ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|riscv:riscv|datapath:dp|floprc:rd2ereg|q[2]     ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |top|riscv:riscv|datapath:dp|mux4:resultmux|y[31]    ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |top|riscv:riscv|datapath:dp|mux4:resultmux|y[23]    ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|riscv:riscv|datapath:dp|mux3:forwardaemux|y[16] ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|riscv:riscv|datapath:dp|mux3:forwardbemux|y[23] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |top|riscv:riscv|datapath:dp|alu:alu|ShiftRight0     ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |top|riscv:riscv|datapath:dp|alu:alu|ShiftLeft0      ;
+; 4:1                ; 50 bits   ; 100 LEs       ; 100 LEs              ; 0 LEs                  ; No         ; |top|riscv:riscv|datapath:dp|alu:alu|ShiftRight0     ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |top|riscv:riscv|datapath:dp|alu:alu|ShiftLeft0      ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |top|riscv:riscv|datapath:dp|alu:alu|ShiftLeft0      ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |top|riscv:riscv|datapath:dp|alu:alu|ShiftLeft0      ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; No         ; |top|riscv:riscv|datapath:dp|flopenrc:instrdreg|q    ;
+; 13:1               ; 12 bits   ; 96 LEs        ; 96 LEs               ; 0 LEs                  ; No         ; |top|riscv:riscv|datapath:dp|alu:alu|Mux7            ;
+; 13:1               ; 12 bits   ; 96 LEs        ; 96 LEs               ; 0 LEs                  ; No         ; |top|riscv:riscv|datapath:dp|alu:alu|Mux21           ;
+; 16:1               ; 4 bits    ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; No         ; |top|riscv:riscv|datapath:dp|alu:alu|Mux0            ;
+; 16:1               ; 3 bits    ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; No         ; |top|riscv:riscv|datapath:dp|alu:alu|Mux29           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------+
+; Source assignments for dmem:dmem|altsyncram:RAM_rtl_0|altsyncram_a3n1:auto_generated ;
++---------------------------------+--------------------+------+------------------------+
+; Assignment                      ; Value              ; From ; To                     ;
++---------------------------------+--------------------+------+------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                      ;
++---------------------------------+--------------------+------+------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------+
+; Source assignments for riscv:riscv|datapath:dp|regfile:rf|altsyncram:rf_rtl_0|altsyncram_6ji1:auto_generated ;
++---------------------------------+--------------------+------+------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                             ;
++---------------------------------+--------------------+------+------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                              ;
++---------------------------------+--------------------+------+------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------+
+; Source assignments for riscv:riscv|datapath:dp|regfile:rf|altsyncram:rf_rtl_1|altsyncram_6ji1:auto_generated ;
++---------------------------------+--------------------+------+------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                             ;
++---------------------------------+--------------------+------+------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                              ;
++---------------------------------+--------------------+------+------------------------------------------------+
+
+
++---------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|mux2:pcmux ;
++----------------+-------+--------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                   ;
++----------------+-------+--------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                         ;
++----------------+-------+--------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopenr:pcreg ;
++----------------+-------+-----------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                      ;
++----------------+-------+-----------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                            ;
++----------------+-------+-----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopenrc:instrdreg ;
++----------------+-------+----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                           ;
++----------------+-------+----------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                 ;
++----------------+-------+----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopenrc:pcdreg ;
++----------------+-------+-------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                        ;
++----------------+-------+-------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                              ;
++----------------+-------+-------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopenrc:pcplus4dreg ;
++----------------+-------+------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                             ;
++----------------+-------+------------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                   ;
++----------------+-------+------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:rd1ereg ;
++----------------+-------+------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                       ;
++----------------+-------+------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                             ;
++----------------+-------+------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:rd2ereg ;
++----------------+-------+------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                       ;
++----------------+-------+------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                             ;
++----------------+-------+------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:pcereg ;
++----------------+-------+-----------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                      ;
++----------------+-------+-----------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                            ;
++----------------+-------+-----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:immextereg ;
++----------------+-------+---------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                          ;
++----------------+-------+---------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                ;
++----------------+-------+---------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:pcplus4ereg ;
++----------------+-------+----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                           ;
++----------------+-------+----------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                 ;
++----------------+-------+----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:rs1ereg ;
++----------------+-------+------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                       ;
++----------------+-------+------------------------------------------------------------+
+; WIDTH          ; 5     ; Signed Integer                                             ;
++----------------+-------+------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:rs2ereg ;
++----------------+-------+------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                       ;
++----------------+-------+------------------------------------------------------------+
+; WIDTH          ; 5     ; Signed Integer                                             ;
++----------------+-------+------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:rdereg ;
++----------------+-------+-----------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                      ;
++----------------+-------+-----------------------------------------------------------+
+; WIDTH          ; 5     ; Signed Integer                                            ;
++----------------+-------+-----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:regwriteereg ;
++----------------+-------+-----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                            ;
++----------------+-------+-----------------------------------------------------------------+
+; WIDTH          ; 1     ; Signed Integer                                                  ;
++----------------+-------+-----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:resultsrcereg ;
++----------------+-------+------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                             ;
++----------------+-------+------------------------------------------------------------------+
+; WIDTH          ; 2     ; Signed Integer                                                   ;
++----------------+-------+------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:memwriteereg ;
++----------------+-------+-----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                            ;
++----------------+-------+-----------------------------------------------------------------+
+; WIDTH          ; 1     ; Signed Integer                                                  ;
++----------------+-------+-----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:alucontrolereg ;
++----------------+-------+-------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                              ;
++----------------+-------+-------------------------------------------------------------------+
+; WIDTH          ; 3     ; Signed Integer                                                    ;
++----------------+-------+-------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:alusrcerreg ;
++----------------+-------+----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                           ;
++----------------+-------+----------------------------------------------------------------+
+; WIDTH          ; 1     ; Signed Integer                                                 ;
++----------------+-------+----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:jumpereg ;
++----------------+-------+-------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                        ;
++----------------+-------+-------------------------------------------------------------+
+; WIDTH          ; 1     ; Signed Integer                                              ;
++----------------+-------+-------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:branchereg ;
++----------------+-------+---------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                          ;
++----------------+-------+---------------------------------------------------------------+
+; WIDTH          ; 1     ; Signed Integer                                                ;
++----------------+-------+---------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|floprc:sl12ereg ;
++----------------+-------+-------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                        ;
++----------------+-------+-------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                              ;
++----------------+-------+-------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|mux3:forwardaemux ;
++----------------+-------+---------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                          ;
++----------------+-------+---------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                ;
++----------------+-------+---------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|mux3:forwardbemux ;
++----------------+-------+---------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                          ;
++----------------+-------+---------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                ;
++----------------+-------+---------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|mux2:srcbmux ;
++----------------+-------+----------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                     ;
++----------------+-------+----------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                           ;
++----------------+-------+----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:aluresultmreg ;
++----------------+-------+-----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                            ;
++----------------+-------+-----------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                  ;
++----------------+-------+-----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:writedatamreg ;
++----------------+-------+-----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                            ;
++----------------+-------+-----------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                  ;
++----------------+-------+-----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:pcplus4mreg ;
++----------------+-------+---------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                          ;
++----------------+-------+---------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                ;
++----------------+-------+---------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:rdmreg ;
++----------------+-------+----------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                     ;
++----------------+-------+----------------------------------------------------------+
+; WIDTH          ; 5     ; Signed Integer                                           ;
++----------------+-------+----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:regwritemreg ;
++----------------+-------+----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                           ;
++----------------+-------+----------------------------------------------------------------+
+; WIDTH          ; 1     ; Signed Integer                                                 ;
++----------------+-------+----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:memwritemreg ;
++----------------+-------+----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                           ;
++----------------+-------+----------------------------------------------------------------+
+; WIDTH          ; 1     ; Signed Integer                                                 ;
++----------------+-------+----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:resultsrcmreg ;
++----------------+-------+-----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                            ;
++----------------+-------+-----------------------------------------------------------------+
+; WIDTH          ; 2     ; Signed Integer                                                  ;
++----------------+-------+-----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:sl12mreg ;
++----------------+-------+------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                       ;
++----------------+-------+------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                             ;
++----------------+-------+------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:aluresultwreg ;
++----------------+-------+-----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                            ;
++----------------+-------+-----------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                  ;
++----------------+-------+-----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:readdatawreg ;
++----------------+-------+----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                           ;
++----------------+-------+----------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                 ;
++----------------+-------+----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:pcplus4wreg ;
++----------------+-------+---------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                          ;
++----------------+-------+---------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                ;
++----------------+-------+---------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:rdwreg ;
++----------------+-------+----------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                     ;
++----------------+-------+----------------------------------------------------------+
+; WIDTH          ; 5     ; Signed Integer                                           ;
++----------------+-------+----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:regwritewreg ;
++----------------+-------+----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                           ;
++----------------+-------+----------------------------------------------------------------+
+; WIDTH          ; 1     ; Signed Integer                                                 ;
++----------------+-------+----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:resultsrcwreg ;
++----------------+-------+-----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                            ;
++----------------+-------+-----------------------------------------------------------------+
+; WIDTH          ; 2     ; Signed Integer                                                  ;
++----------------+-------+-----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|flopr:sl12wreg ;
++----------------+-------+------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                       ;
++----------------+-------+------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                             ;
++----------------+-------+------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: riscv:riscv|datapath:dp|mux4:resultmux ;
++----------------+-------+------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                       ;
++----------------+-------+------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                             ;
++----------------+-------+------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: dmem:dmem|altsyncram:RAM_rtl_0 ;
++------------------------------------+----------------------+---------------------+
+; Parameter Name                     ; Value                ; Type                ;
++------------------------------------+----------------------+---------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped             ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY          ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY        ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE        ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE      ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped             ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped             ;
+; WIDTH_A                            ; 32                   ; Untyped             ;
+; WIDTHAD_A                          ; 6                    ; Untyped             ;
+; NUMWORDS_A                         ; 64                   ; Untyped             ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped             ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped             ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped             ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped             ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped             ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped             ;
+; WIDTH_B                            ; 32                   ; Untyped             ;
+; WIDTHAD_B                          ; 6                    ; Untyped             ;
+; NUMWORDS_B                         ; 64                   ; Untyped             ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped             ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped             ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped             ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped             ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped             ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped             ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped             ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped             ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped             ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped             ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped             ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped             ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped             ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped             ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped             ;
+; BYTE_SIZE                          ; 8                    ; Untyped             ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA             ; Untyped             ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped             ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped             ;
+; INIT_FILE                          ; UNUSED               ; Untyped             ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped             ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped             ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped             ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped             ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped             ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped             ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped             ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped             ;
+; ENABLE_ECC                         ; FALSE                ; Untyped             ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped             ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped             ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped             ;
+; CBXI_PARAMETER                     ; altsyncram_a3n1      ; Untyped             ;
++------------------------------------+----------------------+---------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: riscv:riscv|datapath:dp|regfile:rf|altsyncram:rf_rtl_0 ;
++------------------------------------+----------------------+---------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                        ;
++------------------------------------+----------------------+---------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                     ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                  ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                              ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                     ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                                     ;
+; WIDTH_A                            ; 32                   ; Untyped                                     ;
+; WIDTHAD_A                          ; 5                    ; Untyped                                     ;
+; NUMWORDS_A                         ; 32                   ; Untyped                                     ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                     ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                     ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                     ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                     ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                     ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                     ;
+; WIDTH_B                            ; 32                   ; Untyped                                     ;
+; WIDTHAD_B                          ; 5                    ; Untyped                                     ;
+; NUMWORDS_B                         ; 32                   ; Untyped                                     ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                     ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                     ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                     ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                                     ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                     ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                     ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                     ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                     ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                     ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                     ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                     ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                     ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                                     ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                     ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                     ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                     ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                     ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                     ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                     ;
+; INIT_FILE                          ; UNUSED               ; Untyped                                     ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                     ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                     ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                                     ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                     ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                                     ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                     ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                     ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                     ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                     ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                     ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                     ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                                     ;
+; CBXI_PARAMETER                     ; altsyncram_6ji1      ; Untyped                                     ;
++------------------------------------+----------------------+---------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: riscv:riscv|datapath:dp|regfile:rf|altsyncram:rf_rtl_1 ;
++------------------------------------+----------------------+---------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                        ;
++------------------------------------+----------------------+---------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                     ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                  ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                              ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                     ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                                     ;
+; WIDTH_A                            ; 32                   ; Untyped                                     ;
+; WIDTHAD_A                          ; 5                    ; Untyped                                     ;
+; NUMWORDS_A                         ; 32                   ; Untyped                                     ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                     ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                     ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                     ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                     ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                     ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                     ;
+; WIDTH_B                            ; 32                   ; Untyped                                     ;
+; WIDTHAD_B                          ; 5                    ; Untyped                                     ;
+; NUMWORDS_B                         ; 32                   ; Untyped                                     ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                     ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                     ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                     ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                                     ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                     ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                     ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                     ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                     ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                     ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                     ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                     ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                     ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                                     ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                     ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                     ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                     ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                     ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                     ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                     ;
+; INIT_FILE                          ; UNUSED               ; Untyped                                     ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                     ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                     ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                                     ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                     ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                                     ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                     ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                     ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                     ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                     ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                     ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                     ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                                     ;
+; CBXI_PARAMETER                     ; altsyncram_6ji1      ; Untyped                                     ;
++------------------------------------+----------------------+---------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                                   ;
++-------------------------------------------+--------------------------------------------------------+
+; Name                                      ; Value                                                  ;
++-------------------------------------------+--------------------------------------------------------+
+; Number of entity instances                ; 3                                                      ;
+; Entity Instance                           ; dmem:dmem|altsyncram:RAM_rtl_0                         ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                              ;
+;     -- WIDTH_A                            ; 32                                                     ;
+;     -- NUMWORDS_A                         ; 64                                                     ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                           ;
+;     -- WIDTH_B                            ; 32                                                     ;
+;     -- NUMWORDS_B                         ; 64                                                     ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                                 ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                           ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                   ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA                                               ;
+; Entity Instance                           ; riscv:riscv|datapath:dp|regfile:rf|altsyncram:rf_rtl_0 ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                              ;
+;     -- WIDTH_A                            ; 32                                                     ;
+;     -- NUMWORDS_A                         ; 32                                                     ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                           ;
+;     -- WIDTH_B                            ; 32                                                     ;
+;     -- NUMWORDS_B                         ; 32                                                     ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                                 ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                           ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                   ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                              ;
+; Entity Instance                           ; riscv:riscv|datapath:dp|regfile:rf|altsyncram:rf_rtl_1 ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                              ;
+;     -- WIDTH_A                            ; 32                                                     ;
+;     -- NUMWORDS_A                         ; 32                                                     ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                           ;
+;     -- WIDTH_B                            ; 32                                                     ;
+;     -- NUMWORDS_B                         ; 32                                                     ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                                 ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                           ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                   ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                              ;
++-------------------------------------------+--------------------------------------------------------+
+
+
++---------------------------------------------------------------------+
+; Port Connectivity Checks: "riscv:riscv|datapath:dp|floprc:sl12ereg" ;
++----------+-------+----------+---------------------------------------+
+; Port     ; Type  ; Severity ; Details                               ;
++----------+-------+----------+---------------------------------------+
+; d[11..0] ; Input ; Info     ; Stuck at GND                          ;
++----------+-------+----------+---------------------------------------+
+
+
++------------------------------------------------------------------+
+; Port Connectivity Checks: "riscv:riscv|datapath:dp|adder:pcadd4" ;
++----------+-------+----------+------------------------------------+
+; Port     ; Type  ; Severity ; Details                            ;
++----------+-------+----------+------------------------------------+
+; b[31..3] ; Input ; Info     ; Stuck at GND                       ;
+; b[1..0]  ; Input ; Info     ; Stuck at GND                       ;
+; b[2]     ; Input ; Info     ; Stuck at VCC                       ;
++----------+-------+----------+------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 636                         ;
+;     CLR               ; 241                         ;
+;     CLR SCLR          ; 149                         ;
+;     ENA               ; 64                          ;
+;     ENA CLR           ; 2                           ;
+;     ENA CLR SCLR      ; 76                          ;
+;     ENA CLR SLD       ; 30                          ;
+;     plain             ; 74                          ;
+; arriav_lcell_comb     ; 758                         ;
+;     arith             ; 62                          ;
+;         1 data inputs ; 45                          ;
+;         2 data inputs ; 17                          ;
+;     extend            ; 23                          ;
+;         7 data inputs ; 23                          ;
+;     normal            ; 641                         ;
+;         0 data inputs ; 1                           ;
+;         2 data inputs ; 12                          ;
+;         3 data inputs ; 34                          ;
+;         4 data inputs ; 77                          ;
+;         5 data inputs ; 223                         ;
+;         6 data inputs ; 294                         ;
+;     shared            ; 32                          ;
+;         3 data inputs ; 17                          ;
+;         4 data inputs ; 15                          ;
+; boundary_port         ; 67                          ;
+; stratixv_ram_block    ; 96                          ;
+;                       ;                             ;
+; Max LUT depth         ; 13.10                       ;
+; Average LUT depth     ; 6.86                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:05     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+    Info: Processing started: Fri Dec 12 16:16:51 2025
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off lab9_st -c riscvpipeline
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 18 design units, including 18 entities, in source file riscvpipeline.sv
+    Info (12023): Found entity 1: top File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 81
+    Info (12023): Found entity 2: riscv File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 95
+    Info (12023): Found entity 3: controller File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 124
+    Info (12023): Found entity 4: alu File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 266
+    Info (12023): Found entity 5: datapath File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 298
+    Info (12023): Found entity 6: regfile File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 462
+    Info (12023): Found entity 7: adder File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 482
+    Info (12023): Found entity 8: extend File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 488
+    Info (12023): Found entity 9: hazard File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 506
+    Info (12023): Found entity 10: flopr File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 546
+    Info (12023): Found entity 11: flopenr File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 556
+    Info (12023): Found entity 12: floprc File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 566
+    Info (12023): Found entity 13: flopenrc File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 577
+    Info (12023): Found entity 14: mux2 File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 588
+    Info (12023): Found entity 15: mux3 File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 596
+    Info (12023): Found entity 16: mux4 File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 604
+    Info (12023): Found entity 17: imem File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 612
+    Info (12023): Found entity 18: dmem File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 623
+Info (12127): Elaborating entity "top" for the top level hierarchy
+Info (12128): Elaborating entity "riscv" for hierarchy "riscv:riscv" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 89
+Info (12128): Elaborating entity "datapath" for hierarchy "riscv:riscv|datapath:dp" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 121
+Info (12128): Elaborating entity "mux2" for hierarchy "riscv:riscv|datapath:dp|mux2:pcmux" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 354
+Info (12128): Elaborating entity "flopenr" for hierarchy "riscv:riscv|datapath:dp|flopenr:pcreg" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 355
+Info (12128): Elaborating entity "adder" for hierarchy "riscv:riscv|datapath:dp|adder:pcadd4" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 356
+Info (12128): Elaborating entity "flopenrc" for hierarchy "riscv:riscv|datapath:dp|flopenrc:instrdreg" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 361
+Info (12128): Elaborating entity "controller" for hierarchy "riscv:riscv|datapath:dp|controller:ctrl" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 377
+Info (12128): Elaborating entity "regfile" for hierarchy "riscv:riscv|datapath:dp|regfile:rf" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 380
+Info (12128): Elaborating entity "extend" for hierarchy "riscv:riscv|datapath:dp|extend:ext" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 383
+Info (12128): Elaborating entity "floprc" for hierarchy "riscv:riscv|datapath:dp|floprc:rd1ereg" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 390
+Info (12128): Elaborating entity "floprc" for hierarchy "riscv:riscv|datapath:dp|floprc:rs1ereg" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 395
+Info (12128): Elaborating entity "floprc" for hierarchy "riscv:riscv|datapath:dp|floprc:regwriteereg" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 400
+Info (12128): Elaborating entity "floprc" for hierarchy "riscv:riscv|datapath:dp|floprc:resultsrcereg" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 401
+Info (12128): Elaborating entity "floprc" for hierarchy "riscv:riscv|datapath:dp|floprc:alucontrolereg" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 403
+Info (12128): Elaborating entity "mux3" for hierarchy "riscv:riscv|datapath:dp|mux3:forwardaemux" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 411
+Info (12128): Elaborating entity "alu" for hierarchy "riscv:riscv|datapath:dp|alu:alu" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 420
+Info (12128): Elaborating entity "flopr" for hierarchy "riscv:riscv|datapath:dp|flopr:aluresultmreg" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 429
+Info (12128): Elaborating entity "flopr" for hierarchy "riscv:riscv|datapath:dp|flopr:rdmreg" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 432
+Info (12128): Elaborating entity "flopr" for hierarchy "riscv:riscv|datapath:dp|flopr:regwritemreg" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 433
+Info (12128): Elaborating entity "flopr" for hierarchy "riscv:riscv|datapath:dp|flopr:resultsrcmreg" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 435
+Info (12128): Elaborating entity "mux4" for hierarchy "riscv:riscv|datapath:dp|mux4:resultmux" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 453
+Info (12128): Elaborating entity "hazard" for hierarchy "riscv:riscv|datapath:dp|hazard:hu" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 458
+Info (12128): Elaborating entity "imem" for hierarchy "imem:imem" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 91
+Warning (10850): Verilog HDL warning at riscvpipeline.sv(618): number of words (31) in memory file does not match the number of elements in the address range [0:63] File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 618
+Warning (10030): Net "RAM.data_a" at riscvpipeline.sv(615) has no driver or initial value, using a default initial value '0' File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 615
+Warning (10030): Net "RAM.waddr_a" at riscvpipeline.sv(615) has no driver or initial value, using a default initial value '0' File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 615
+Warning (10030): Net "RAM.we_a" at riscvpipeline.sv(615) has no driver or initial value, using a default initial value '0' File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 615
+Info (12128): Elaborating entity "dmem" for hierarchy "dmem:dmem" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 92
+Info (286030): Timing-Driven Synthesis is running
+Warning (276020): Inferred RAM node "riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
+Warning (276020): Inferred RAM node "riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
+Info (276014): Found 1 instances of uninferred RAM logic
+    Info (276004): RAM logic "imem:imem|RAM" is uninferred due to inappropriate RAM size File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/riscvpipeline.sv Line: 615
+Warning (127007): Memory Initialization File or Hexadecimal (Intel-Format) File "/mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/db/riscvpipeline.ram0_imem_37c714.hdl.mif" contains "don't care" values -- overwriting them with 0s
+Info (19000): Inferred 3 megafunctions from design logic
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "dmem:dmem|RAM_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 32
+        Info (286033): Parameter WIDTHAD_A set to 6
+        Info (286033): Parameter NUMWORDS_A set to 64
+        Info (286033): Parameter WIDTH_B set to 32
+        Info (286033): Parameter WIDTHAD_B set to 6
+        Info (286033): Parameter NUMWORDS_B set to 64
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter READ_DURING_WRITE_MODE_MIXED_PORTS set to OLD_DATA
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "riscv:riscv|datapath:dp|regfile:rf|rf_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 32
+        Info (286033): Parameter WIDTHAD_A set to 5
+        Info (286033): Parameter NUMWORDS_A set to 32
+        Info (286033): Parameter WIDTH_B set to 32
+        Info (286033): Parameter WIDTHAD_B set to 5
+        Info (286033): Parameter NUMWORDS_B set to 32
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "riscv:riscv|datapath:dp|regfile:rf|rf_rtl_1" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 32
+        Info (286033): Parameter WIDTHAD_A set to 5
+        Info (286033): Parameter NUMWORDS_A set to 32
+        Info (286033): Parameter WIDTH_B set to 32
+        Info (286033): Parameter WIDTHAD_B set to 5
+        Info (286033): Parameter NUMWORDS_B set to 32
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+Info (12130): Elaborated megafunction instantiation "dmem:dmem|altsyncram:RAM_rtl_0"
+Info (12133): Instantiated megafunction "dmem:dmem|altsyncram:RAM_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "32"
+    Info (12134): Parameter "WIDTHAD_A" = "6"
+    Info (12134): Parameter "NUMWORDS_A" = "64"
+    Info (12134): Parameter "WIDTH_B" = "32"
+    Info (12134): Parameter "WIDTHAD_B" = "6"
+    Info (12134): Parameter "NUMWORDS_B" = "64"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "READ_DURING_WRITE_MODE_MIXED_PORTS" = "OLD_DATA"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_a3n1.tdf
+    Info (12023): Found entity 1: altsyncram_a3n1 File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/db/altsyncram_a3n1.tdf Line: 28
+Info (12130): Elaborated megafunction instantiation "riscv:riscv|datapath:dp|regfile:rf|altsyncram:rf_rtl_0"
+Info (12133): Instantiated megafunction "riscv:riscv|datapath:dp|regfile:rf|altsyncram:rf_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "32"
+    Info (12134): Parameter "WIDTHAD_A" = "5"
+    Info (12134): Parameter "NUMWORDS_A" = "32"
+    Info (12134): Parameter "WIDTH_B" = "32"
+    Info (12134): Parameter "WIDTHAD_B" = "5"
+    Info (12134): Parameter "NUMWORDS_B" = "32"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_6ji1.tdf
+    Info (12023): Found entity 1: altsyncram_6ji1 File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/db/altsyncram_6ji1.tdf Line: 28
+Info (12130): Elaborated megafunction instantiation "riscv:riscv|datapath:dp|regfile:rf|altsyncram:rf_rtl_1"
+Info (12133): Instantiated megafunction "riscv:riscv|datapath:dp|regfile:rf|altsyncram:rf_rtl_1" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "32"
+    Info (12134): Parameter "WIDTHAD_A" = "5"
+    Info (12134): Parameter "NUMWORDS_A" = "32"
+    Info (12134): Parameter "WIDTH_B" = "32"
+    Info (12134): Parameter "WIDTHAD_B" = "5"
+    Info (12134): Parameter "NUMWORDS_B" = "32"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+Info (17036): Removed 1 MSB VCC or GND address nodes from RAM block "riscv:riscv|datapath:dp|regfile:rf|altsyncram:rf_rtl_0|altsyncram_6ji1:auto_generated|ALTSYNCRAM" File: /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/db/altsyncram_6ji1.tdf Line: 38
+Info (144001): Generated suppressed messages file /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/output_files/riscvpipeline.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 1394 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 2 input pins
+    Info (21059): Implemented 65 output pins
+    Info (21061): Implemented 1231 logic cells
+    Info (21064): Implemented 96 RAM segments
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 8 warnings
+    Info: Peak virtual memory: 483 megabytes
+    Info: Processing ended: Fri Dec 12 16:17:08 2025
+    Info: Elapsed time: 00:00:17
+    Info: Total CPU time (on all processors): 00:00:37
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in /mnt/shared/sangeeth/Documents/RPI/Semester7/ECSE-4770/Labs/Lab9/output_files/riscvpipeline.map.smsg.
+
+
