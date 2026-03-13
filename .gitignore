@@ -1,0 +1,48 @@
+# Quartus generated outputs
+db/
+output_files/
+incremental_db/
+*.rpt
+*.summary
+*.smsg
+*.done
+*.pin
+*.jdi
+*.sld
+*.sof
+*_pin_model_dump.txt
+
+# Quartus user/session files
+*.qws
+*.qws.settings
+*.sopcinfo
+*.qpf.bak
+*.qsf.bak
+
+# ModelSim/Questa generated outputs
+work/
+simulation/work/
+simulation/modelsim/
+*.wlf
+transcript
+simulation/transcript
+simulation/cache_coherence.cr.mti
+
+# Backup/temp files
+*.bak
+*.jou
+*.log
+
+# Latex generated outputs
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# simulation venv
+tests/.venv/
