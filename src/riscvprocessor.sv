@@ -4,7 +4,8 @@ module riscvprocessor(input  logic        clk, reset,
              output logic        MemWrite,
              output logic [31:0] ALUResultM,
              output logic [31:0] WriteData,
-             input  logic [31:0] ReadData);
+             input  logic [31:0] ReadData,
+             output logic        MemReadM);
 
   logic        PCSrcE, RegWriteW;
   
@@ -24,5 +25,5 @@ module riscvprocessor(input  logic        clk, reset,
   datapath dp(clk, reset,
               InstrF,
               PCF, ALUResultM, WriteData, ReadData,
-              MemWrite);
+              MemWrite, MemReadM);
 endmodule

@@ -235,15 +235,15 @@ def assemble_to_machine_code(input_file):
 
 def assemble_file_to_txt(input_file, output_file=None):
     """
-    Extracts machine code from RISC-V assembly file and saves to text file.
+    Extracts machine code from RISC-V assembly file and saves to a unified memory image file.
     
     Args:
         input_file (str): The path to the input assembly file.
-        output_file (str): The path to the output text file. If None, uses same name with .txt extension.
+        output_file (str): The path to the output memory image file. If None, uses same name with .mem extension.
     """
     if output_file is None:
-        # Default output: same filename with .txt extension
-        output_file = os.path.splitext(input_file)[0] + '.txt'
+        # Default output: same filename with .mem extension
+        output_file = os.path.splitext(input_file)[0] + '.mem'
     
     machine_codes = assemble_to_machine_code(input_file)
     
@@ -259,7 +259,7 @@ def assemble_file_to_txt(input_file, output_file=None):
     
     print(f"Assembly file '{input_file}' processed.")
     print(f"Machine code extracted: {len(machine_codes)} instructions")
-    print(f"Machine code text file saved to '{output_file}'")
+    print(f"Machine code memory image saved to '{output_file}'")
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:

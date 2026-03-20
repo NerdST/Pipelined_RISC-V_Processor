@@ -2,11 +2,12 @@ module hazard(input  logic [4:0] Rs1D, Rs2D, Rs1E, Rs2E,
               input  logic [4:0] RdE, RdM, RdW,
               input  logic       PCSrcE,
               input  logic [1:0] ResultSrcE,
+              input  logic       MemAccessM,
               input  logic       RegWriteM, RegWriteW,
               output logic [1:0] ForwardAE, ForwardBE,
               output logic       StallF, StallD, FlushD, FlushE);
 
-  logic lwStall;
+  logic lwStall, memStall;
 
   // Forwarding logic
   always_comb begin
@@ -29,11 +30,12 @@ module hazard(input  logic [4:0] Rs1D, Rs2D, Rs1E, Rs2E,
 
   // Stall logic for load-use hazard
   assign lwStall = (ResultSrcE == 2'b01) && (RdE != 5'b0) && ((RdE == Rs1D) || (RdE == Rs2D));
-  assign StallF = lwStall;
-  assign StallD = lwStall;
+  assign memStall = MemAccessM;
+  assign StallF = lwStall | memStall;
+  assign StallD = lwStall | memStall;
 
   // Flush logic
   assign FlushD = PCSrcE;  // Flush decode stage on branch/jump
-  assign FlushE = lwStall | PCSrcE;  // Flush execute on stall or branch/jump
+  assign FlushE = lwStall | memStall | PCSrcE;  // Flush execute on stall or branch/jump
 
 endmodule

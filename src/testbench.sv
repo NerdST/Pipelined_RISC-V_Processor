@@ -6,12 +6,15 @@ module testbench();
   logic [31:0] WriteData, DataAdr;
   logic        MemWrite;
   logic [31:0] RAM [4095:0];
+  logic [31:0] PCF, InstrF;
   
   // instantiate device to be tested
   top dut(clk, reset, WriteData, DataAdr, MemWrite);
 
-  // Expose data memory contents as a single global for waveform debug.
-  always_comb RAM = dut.dmem.RAM;
+  // Expose unified memory contents as a single global for waveform debug.
+  always_comb RAM = dut.mem.RAM;
+  always_comb PCF = dut.PCF;
+  always_comb InstrF = dut.InstrF;
   
   // initialize test
   initial
