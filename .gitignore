@@ -46,3 +46,4 @@ simulation/cache_coherence.cr.mti
 
 # simulation venv
 tests/.venv/
+tests/test_runner.py

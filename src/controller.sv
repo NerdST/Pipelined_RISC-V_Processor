@@ -42,14 +42,14 @@ module controller(input  logic [6:0] op,
         ImmSrc = 2'b01;
         ALUSrc = 1'b1;
         MemWrite = 1'b1;
-        ResultSrc = 2'bxx;
+        ResultSrc = 2'b00;
         Branch = 1'b0;
         ALUOp_internal = 2'b00;
         Jump = 1'b0;
       end
       7'b0110011: begin // R-type
         RegWrite = 1'b1;
-        ImmSrc = 2'bxx;
+        ImmSrc = 2'b00;
         ALUSrc = 1'b0;
         MemWrite = 1'b0;
         ResultSrc = 2'b00;
@@ -62,7 +62,7 @@ module controller(input  logic [6:0] op,
         ImmSrc = 2'b10;
         ALUSrc = 1'b0;
         MemWrite = 1'b0;
-        ResultSrc = 2'bxx;
+        ResultSrc = 2'b00;
         Branch = 1'b1;
         ALUOp_internal = 2'b01;
         Jump = 1'b0;
@@ -80,21 +80,21 @@ module controller(input  logic [6:0] op,
       7'b1101111: begin // jal
         RegWrite = 1'b1;
         ImmSrc = 2'b11;
-        ALUSrc = 1'bx;
+        ALUSrc = 1'b0;
         MemWrite = 1'b0;
         ResultSrc = 2'b10;
         Branch = 1'b0;
-        ALUOp_internal = 2'bxx;
+        ALUOp_internal = 2'b00;
         Jump = 1'b1;
       end
       7'b0110111: begin // lui
         RegWrite = 1'b1;
         ImmSrc = 2'b11;
-        ALUSrc = 1'bx;
+        ALUSrc = 1'b0;
         MemWrite = 1'b0;
         ResultSrc = 2'b11;
         Branch = 1'b0;
-        ALUOp_internal = 2'bxx;
+        ALUOp_internal = 2'b00;
         Jump = 1'b0;
       end
       default: begin
@@ -134,8 +134,8 @@ module controller(input  logic [6:0] op,
                3'b010: ALUControl = 3'b101; // slt
                3'b110: ALUControl = 3'b011; // or
                3'b111: ALUControl = 3'b010; // and
-               default: ALUControl = 3'bxxx;
+               default: ALUControl = 3'b000;
              endcase
-      default: ALUControl = 3'bxxx;
+      default: ALUControl = 3'b000;
     endcase
 endmodule

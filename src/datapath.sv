@@ -14,10 +14,12 @@ module datapath(input  logic        clk, reset,
   // Decode stage signals
   logic [31:0] InstrD, PCD, PCPlus4D;
   logic [31:0] RD1D, RD2D, ImmExtD;
+  logic [31:0] RD1D_raw, RD2D_raw;
   logic [4:0]  Rs1D, Rs2D, RdD;
   logic        RegWriteD, MemWriteD, JumpD, BranchD;
   logic [1:0]  ResultSrcD, ImmSrcD;
   logic [2:0]  ALUControlD;
+    logic [2:0]  BranchTypeD;
   logic        ALUSrcD;
   logic [1:0]  ALUOpD;
   
@@ -34,11 +36,14 @@ module datapath(input  logic        clk, reset,
   logic        RegWriteE, MemWriteE, JumpE, BranchE, ZeroE;
   logic [1:0]  ResultSrcE, ForwardAE, ForwardBE;
   logic [2:0]  ALUControlE;
+    logic [2:0]  BranchTypeE;
   logic        ALUSrcE;
   logic [31:0] SL12E;
+    logic        branchEqE, branchLtSignedE, branchLtUnsignedE, branchTakenE;
   
   // Memory stage signals
   logic [31:0] PCPlus4M, ReadDataMReg, SL12M;
+  logic [31:0] ResultMForward;
   logic [4:0]  RdM;
   logic        RegWriteM;
   logic [1:0]  ResultSrcM;
@@ -73,6 +78,7 @@ module datapath(input  logic        clk, reset,
   assign OpD = InstrD[6:0];
   assign Funct3D = InstrD[14:12];
   assign Funct7b5D = InstrD[30];
+    assign BranchTypeD = Funct3D;
   
   // Instantiate controller in Decode stage
   controller ctrl(OpD, Funct3D, Funct7b5D,
@@ -80,7 +86,11 @@ module datapath(input  logic        clk, reset,
                   BranchD, ALUControlD, ALUSrcD, ImmSrcD);
   
   // Register file
-  regfile rf(clk, RegWriteW, Rs1D, Rs2D, RdW, ResultW, RD1D, RD2D);
+  regfile rf(clk, RegWriteW, Rs1D, Rs2D, RdW, ResultW, RD1D_raw, RD2D_raw);
+
+  // Decode-stage bypass for same-cycle W->D RAW hazards.
+  assign RD1D = (RegWriteW && (RdW != 5'b0) && (RdW == Rs1D)) ? ResultW : RD1D_raw;
+  assign RD2D = (RegWriteW && (RdW != 5'b0) && (RdW == Rs2D)) ? ResultW : RD2D_raw;
   
   // Extend immediate
   extend ext(InstrD[31:7], ImmSrcD, ImmExtD);
@@ -104,15 +114,23 @@ module datapath(input  logic        clk, reset,
   floprc #(2) resultsrcereg(clk, reset, FlushE, ResultSrcD, ResultSrcE);
   floprc #(1) memwriteereg(clk, reset, FlushE, MemWriteD, MemWriteE);
   floprc #(3) alucontrolereg(clk, reset, FlushE, ALUControlD, ALUControlE);
+    floprc #(3) branchtypeereg(clk, reset, FlushE, BranchTypeD, BranchTypeE);
   floprc #(1) alusrcerreg(clk, reset, FlushE, ALUSrcD, ALUSrcE);
   floprc #(1) jumpereg(clk, reset, FlushE, JumpD, JumpE);
   floprc #(1) branchereg(clk, reset, FlushE, BranchD, BranchE);
   floprc #(32) sl12ereg(clk, reset, FlushE, SL12D, SL12E);
   
   // ========== EXECUTE STAGE ==========
+  // M-stage forwarding must use the value that will be written back, not ALUResult only.
+  // This is required for forwarding results of lw, jal (PC+4), and lui.
+  assign ResultMForward = (ResultSrcM == 2'b00) ? ALUResultM :
+                          (ResultSrcM == 2'b01) ? ReadDataM :
+                          (ResultSrcM == 2'b10) ? PCPlus4M :
+                                                 SL12M;
+
   // Forwarding muxes
-  mux3 #(32) forwardaemux(RD1E, ResultW, ALUResultM, ForwardAE, SrcAE_Fwd);
-  mux3 #(32) forwardbemux(RD2E, ResultW, ALUResultM, ForwardBE, SrcBE_Fwd);
+  mux3 #(32) forwardaemux(RD1E, ResultW, ResultMForward, ForwardAE, SrcAE_Fwd);
+  mux3 #(32) forwardbemux(RD2E, ResultW, ResultMForward, ForwardBE, SrcBE_Fwd);
   
   // ALU source muxes
   assign SrcAE = SrcAE_Fwd;  // ALUSrcE is don't care for jal/lui
@@ -125,8 +143,25 @@ module datapath(input  logic        clk, reset,
   // PC target calculation
   adder pcaddbranch(PCE, ImmExtE, PCTargetE);
   
-  // Branch decision
-  assign PCSrcE = (BranchE & ZeroE) | JumpE;
+    // Branch decision for full RV32I branch family:
+    // beq, bne, blt, bge, bltu, bgeu
+    assign branchEqE = (SrcAE_Fwd == SrcBE_Fwd);
+    assign branchLtSignedE = ($signed(SrcAE_Fwd) < $signed(SrcBE_Fwd));
+    assign branchLtUnsignedE = (SrcAE_Fwd < SrcBE_Fwd);
+
+    always_comb begin
+        case (BranchTypeE)
+            3'b000: branchTakenE = branchEqE;             // beq
+            3'b001: branchTakenE = ~branchEqE;            // bne
+            3'b100: branchTakenE = branchLtSignedE;       // blt
+            3'b101: branchTakenE = ~branchLtSignedE;      // bge
+            3'b110: branchTakenE = branchLtUnsignedE;     // bltu
+            3'b111: branchTakenE = ~branchLtUnsignedE;    // bgeu
+            default: branchTakenE = 1'b0;
+        endcase
+    end
+
+    assign PCSrcE = (BranchE & branchTakenE) | JumpE;
   
   // ========== EXECUTE/MEMORY PIPELINE REGISTER ==========
   flopr #(32) aluresultmreg(clk, reset, ALUResultE, ALUResultM);

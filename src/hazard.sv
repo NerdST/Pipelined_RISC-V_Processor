@@ -28,7 +28,7 @@ module hazard(input  logic [4:0] Rs1D, Rs2D, Rs1E, Rs2E,
   end
 
   // Stall logic for load-use hazard
-  assign lwStall = ResultSrcE[0] && ((RdE == Rs1D) || (RdE == Rs2D));
+  assign lwStall = (ResultSrcE == 2'b01) && (RdE != 5'b0) && ((RdE == Rs1D) || (RdE == Rs2D));
   assign StallF = lwStall;
   assign StallD = lwStall;
 

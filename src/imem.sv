@@ -2,9 +2,14 @@ module imem(input  logic [31:0] a,
             output logic [31:0] rd);
 
   logic [31:0] RAM[63:0];
+  string imem_file;
 
-  initial
-    $readmemh("../tests/riscvtest.txt",RAM);
+  initial begin
+    if (!$value$plusargs("IMEM=%s", imem_file))
+      imem_file = "/mnt/shared/sangeeth/Documents/RPI/Semester8/ECSE-4780/projects/project2/tests/riscvtest.txt";
+    $display("[imem] loading program: %s", imem_file);
+    $readmemh(imem_file, RAM);
+  end
 
   assign rd = RAM[a[31:2]]; // word aligned
 endmodule
