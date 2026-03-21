@@ -4,7 +4,8 @@ module datapath(input  logic        clk, reset,
                 output logic [31:0] ALUResultM,
                 output logic [31:0] WriteDataM,
                 input  logic [31:0] ReadDataM,
-                output logic        MemWrite);
+                output logic        MemWrite,
+                output logic        MemReadM);
 
   // Fetch stage signals
   logic [31:0] PCPlus4F, PCFa, PCTargetE;
@@ -47,6 +48,7 @@ module datapath(input  logic        clk, reset,
   logic [4:0]  RdM;
   logic        RegWriteM;
   logic [1:0]  ResultSrcM;
+  logic        MemAccessM;
   
   // Writeback stage signals
   logic [31:0] ALUResultW, ReadDataW, PCPlus4W, ResultW, SL12W;
@@ -176,6 +178,8 @@ module datapath(input  logic        clk, reset,
   // ========== MEMORY STAGE ==========
   // Memory read/write handled externally
   // Data memory output connected to ReadDataM input
+  assign MemReadM = (ResultSrcM == 2'b01);
+  assign MemAccessM = MemWrite | MemReadM;
   
   // ========== MEMORY/WRITEBACK PIPELINE REGISTER ==========
   flopr #(32) aluresultwreg(clk, reset, ALUResultM, ALUResultW);
@@ -192,7 +196,7 @@ module datapath(input  logic        clk, reset,
   
   // ========== HAZARD UNIT ==========
   hazard hu(Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW,
-            PCSrcE, ResultSrcE, RegWriteM, RegWriteW,
+            PCSrcE, ResultSrcE, MemAccessM, RegWriteM, RegWriteW,
             ForwardAE, ForwardBE, StallF, StallD, FlushD, FlushE);
   
 endmodule
