@@ -132,7 +132,8 @@ def assemble_instruction(instr_text, labels, pc, line_no):
     if op == 'nop':
         return 0x00000013
 
-    if op in ('add', 'sub', 'and', 'or', 'xor', 'sll', 'srl', 'sra', 'slt', 'sltu'):
+    if op in ('add', 'sub', 'and', 'or', 'xor', 'sll', 'srl', 'sra', 'slt', 'sltu',
+              'mul', 'mulh', 'mulhsu', 'mulhu', 'div', 'divu', 'rem', 'remu'):
         if len(tokens) != 4:
             raise ValueError(f"Invalid R-type format on line {line_no}: {instr_text}")
         rd = parse_reg(tokens[1])
@@ -141,7 +142,12 @@ def assemble_instruction(instr_text, labels, pc, line_no):
         r_map = {
             'add': (0x00, 0x0), 'sub': (0x20, 0x0), 'and': (0x00, 0x7), 'or': (0x00, 0x6),
             'xor': (0x00, 0x4), 'sll': (0x00, 0x1), 'srl': (0x00, 0x5), 'sra': (0x20, 0x5),
-            'slt': (0x00, 0x2), 'sltu': (0x00, 0x3)
+            'slt': (0x00, 0x2), 'sltu': (0x00, 0x3),
+            # M-extension (funct7 = 0x01)
+            'mul':    (0x01, 0x0), 'mulh':   (0x01, 0x1),
+            'mulhsu': (0x01, 0x2), 'mulhu':  (0x01, 0x3),
+            'div':    (0x01, 0x4), 'divu':   (0x01, 0x5),
+            'rem':    (0x01, 0x6), 'remu':   (0x01, 0x7),
         }
         funct7, funct3 = r_map[op]
         return encode_r(funct7, rs2, rs1, funct3, rd, 0x33)
@@ -174,13 +180,14 @@ def assemble_instruction(instr_text, labels, pc, line_no):
             funct3 = 0x5
         return encode_i(imm, rs1, funct3, rd, 0x13)
 
-    if op == 'lw':
+    if op in ('lb', 'lh', 'lw', 'lbu', 'lhu'):
         if len(tokens) != 4:
-            raise ValueError(f"Invalid lw format on line {line_no}: {instr_text}")
-        rd = parse_reg(tokens[1])
+            raise ValueError(f"Invalid load format on line {line_no}: {instr_text}")
+        rd  = parse_reg(tokens[1])
         imm = parse_imm(tokens[2])
         rs1 = parse_reg(tokens[3])
-        return encode_i(imm, rs1, 0x2, rd, 0x03)
+        funct3_map = {'lb': 0x0, 'lh': 0x1, 'lw': 0x2, 'lbu': 0x4, 'lhu': 0x5}
+        return encode_i(imm, rs1, funct3_map[op], rd, 0x03)
 
     if op == 'jalr':
         if len(tokens) != 4:
@@ -190,13 +197,14 @@ def assemble_instruction(instr_text, labels, pc, line_no):
         rs1 = parse_reg(tokens[3])
         return encode_i(imm, rs1, 0x0, rd, 0x67)
 
-    if op == 'sw':
+    if op in ('sb', 'sh', 'sw'):
         if len(tokens) != 4:
-            raise ValueError(f"Invalid sw format on line {line_no}: {instr_text}")
+            raise ValueError(f"Invalid store format on line {line_no}: {instr_text}")
         rs2 = parse_reg(tokens[1])
         imm = parse_imm(tokens[2])
         rs1 = parse_reg(tokens[3])
-        return encode_s(imm, rs2, rs1, 0x2, 0x23)
+        funct3_map = {'sb': 0x0, 'sh': 0x1, 'sw': 0x2}
+        return encode_s(imm, rs2, rs1, funct3_map[op], 0x23)
 
     if op in ('beq', 'bne', 'blt', 'bge', 'bltu', 'bgeu'):
         if len(tokens) != 4:
@@ -221,6 +229,27 @@ def assemble_instruction(instr_text, labels, pc, line_no):
         rd = parse_reg(tokens[1])
         imm = resolve_imm_or_label(tokens[2], labels, pc)
         return encode_j(imm, rd, 0x6F)
+
+    # ---- Pseudo-instructions ----
+    if op == 'ret':
+        # ret = jalr x0, 0(ra)
+        return encode_i(0, 1, 0x0, 0, 0x67)
+
+    if op == 'li':
+        # li rd, imm  →  addi rd, x0, imm  (12-bit signed immediates only)
+        if len(tokens) != 3:
+            raise ValueError(f"Invalid li format on line {line_no}: {instr_text}")
+        rd  = parse_reg(tokens[1])
+        imm = parse_imm(tokens[2])
+        return encode_i(imm, 0, 0x0, rd, 0x13)
+
+    if op == 'mv':
+        # mv rd, rs  →  addi rd, rs, 0
+        if len(tokens) != 3:
+            raise ValueError(f"Invalid mv format on line {line_no}: {instr_text}")
+        rd = parse_reg(tokens[1])
+        rs = parse_reg(tokens[2])
+        return encode_i(0, rs, 0x0, rd, 0x13)
 
     raise ValueError(f"Unsupported instruction on line {line_no}: {op}")
 
