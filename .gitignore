@@ -26,7 +26,7 @@ simulation/modelsim/
 *.wlf
 transcript
 simulation/transcript
-simulation/cache_coherence.cr.mti
+simulation/riscvproc.cr.mti
 
 # Backup/temp files
 *.bak
