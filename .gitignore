@@ -47,3 +47,4 @@ simulation/cache_coherence.cr.mti
 # simulation venv
 tests/.venv/
 tests/test_runner.py
+simulation/.fuse_hidden0000555900000002

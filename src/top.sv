@@ -4,10 +4,10 @@ module top(input logic clk, reset,
 
   logic [31:0] PCF, InstrF, ReadDataM;
   logic        MemReadM;
+  logic [2:0]  MemFunct3M;
 
-  // Instantiate processor and unified single-port memory.
   riscvprocessor riscvprocessor(clk, reset, PCF, InstrF, MemWriteM, DataAdrM,
-              WriteDataM, ReadDataM, MemReadM);
+              WriteDataM, ReadDataM, MemReadM, MemFunct3M);
 
-  mem mem(clk, PCF, InstrF, MemReadM, MemWriteM, DataAdrM, WriteDataM, ReadDataM);
+  mem mem(clk, PCF, InstrF, MemReadM, MemWriteM, DataAdrM, WriteDataM, ReadDataM, MemFunct3M);
 endmodule
